@@ -48,7 +48,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "20/Oct/2019 UB Chain came into being in the world";
+    const char* pszTimestamp = "15/Nov/2019 UB Chain came into being in the world";
     const CScript genesisOutputScript = CScript() << ParseHex("0270eb1afae2dd332278c1ceab5b2f33fdae98f2ef983e80d4bbe55b59f118c50c") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -74,19 +74,19 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 1000001;
+        consensus.nSubsidyHalvingInterval = 420000;
         //consensus.BIP16Exception = uint256S("0x00000000000002dc756eebf4f49723ed8d30cc28a5f108eb94b1ba88ac4f9c22");
         consensus.BIP34Height = 227931;
         consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
         consensus.BIP65Height = 388381; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 363725; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 60;
+        consensus.nPowTargetTimespan = 60 * 5 * 60; // 
+        consensus.nPowTargetSpacing = 5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1360; // 95% of 1440
-        consensus.nMinerConfirmationWindow = 1440; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 57; // 95% of 1440
+        consensus.nMinerConfirmationWindow = 60; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -114,6 +114,7 @@ public:
 		consensus.posSubsidyDescendRate = 0.8; 
 		consensus.nSignCopyRightFee = 0.1 * COIN;  
 		consensus.copyRightCheckRate = 0.6; 
+		consensus.nPreMinningCoin = 2100000 * COIN; 
 		
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -128,10 +129,10 @@ public:
         nPruneAfterHeight = 100000;
 		nMinerThreads = 1;
 		
-        genesis = CreateGenesisBlock(1569491029, 9467852, 0x1e00ffff, 1, 10 * COIN);
+        genesis = CreateGenesisBlock(1572232346, 21183860, 0x1e00ffff, 1, 25 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-		assert(genesis.hashMerkleRoot == uint256S("15ff877d68694395969b070326180bea86974a973d7ea5fdc9da3a502fed5735"));
-        assert(consensus.hashGenesisBlock == uint256S("000000c8df741373211e7c8531ffada207726291c119a078dba3f9822ad1354f"));
+		assert(genesis.hashMerkleRoot == uint256S("2444361412b1f005a48e04dcdc8c72297181f89e5fbddf2ab42190fefb6c7722"));
+        assert(consensus.hashGenesisBlock == uint256S("000000db1bf29e2aeec40b20fed789ffe9d8f9b420cbc786d71174444868a773"));
 
 
         // Note that of those which support the service bits prefix, most only support a subset of

@@ -14,7 +14,7 @@ FundRecord::FundRecord(): address(""), currency("RMB"), value(0), status(0), tim
 
 std::string FundRecord::ToString() const
 {
-    return strprintf("FundRecord(address=%s, currency=%s, value=%f, status=%d, time=%u)",
+    return strprintf("FundRecord(address=%s, currency=%s, value=%u, status=%d, time=%u)",
 		address, currency, value, status, time);
 }
 

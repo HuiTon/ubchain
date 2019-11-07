@@ -4083,7 +4083,7 @@ UniValue signdepositrecord(const JSONRPCRequest& request)
     mapValue_t mapValue;
 	FundRecord fund;
 	fund.address = request.params[0].get_str();
-	fund.value = atof(request.params[1].get_str().c_str());
+	fund.value = atoi(request.params[1].get_str().c_str());
 	fund.status = 1;
 	fund.time = GetTime();
 
@@ -4137,7 +4137,7 @@ UniValue signwithdrawrecord(const JSONRPCRequest& request)
     mapValue_t mapValue;
 	FundRecord fund;
 	fund.address = request.params[0].get_str();
-	fund.value = atof(request.params[1].get_str().c_str());
+	fund.value = atoi(request.params[1].get_str().c_str());
 	fund.status = 1;
 	fund.time = GetTime();
 
@@ -4192,7 +4192,7 @@ UniValue getblockfundrecord(const JSONRPCRequest& request)
 			obj.pushKV("txid", tx->GetHash().GetHex());
 			obj.pushKV("address", tx->vfund[0].address);
 			obj.pushKV("currency", tx->vfund[0].currency);
-			obj.pushKV("value", (double)tx->vfund[0].value);
+			obj.pushKV("value", (int64_t)tx->vfund[0].value);
 			obj.pushKV("status", (int64_t)tx->vfund[0].status);
 			obj.pushKV("time", tx->vfund[0].time);
 			ret.push_back(obj);
@@ -4234,7 +4234,7 @@ UniValue gettxfundrecord(const JSONRPCRequest& request)
 	
 	ret.pushKV("address", tx->vfund[0].address);
 	ret.pushKV("currency", tx->vfund[0].currency);
-	ret.pushKV("value", (double)tx->vfund[0].value);
+	ret.pushKV("value", (int64_t)tx->vfund[0].value);
 	ret.pushKV("status", (int64_t)tx->vfund[0].status);
 	ret.pushKV("time", tx->vfund[0].time);
 	

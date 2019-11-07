@@ -76,6 +76,7 @@ struct Params {
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 	
+	uint64_t nPreMinningCoin; 	
 	uint64_t nBlockCoinMax; 	
 	uint64_t nBlockPowSubsidy;
 	uint64_t nCopyRightPosSubsidy;

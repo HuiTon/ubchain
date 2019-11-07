@@ -21,7 +21,7 @@ class FundRecord
 public:
 	std::string address;      //address or account
 	std::string currency;     //currency
-	float value;              //the value of the FundRecord
+	uint32_t value;           //the value of the FundRecord
 	int32_t status;           //0: invalid  1: deposit  2: withdraw
     int64_t time;	          //the fund flow time
 	
